@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Inventori - Gudang Bahan Baku</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css"> 
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
+  <div class="container-fluid"> 
+    <a class="navbar-brand" href="#">TekInd Systems</a> 
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"> 
+      <span class="navbar-toggler-icon"></span> 
+    </button> 
+    <div class="collapse navbar-collapse" id="navbarNav"> 
+      <ul class="navbar-nav"> 
+        <li class="nav-item"> 
+          <a class="nav-link" href="#">Dashboard Produksi</a> 
+        </li> 
+        <li class="nav-item"> 
+          <a class="nav-link active" href="#">Dashboard Inventori</a> 
+        </li> 
+        <li class="nav-item"> 
+          <a class="nav-link" href="#">Laporan</a> 
+        </li> 
+      </ul> 
+    </div> 
+  </div> 
+</nav>
+
+<header class="text-center mt-3">
+    <p class="author">Oleh: Aisyah Ayu Salsabila 23051430001</p>
+</header>
+
+<div class="container mt-4">
+
+    <!-- Judul Dashboard -->
+    <div class="p-4 mb-4 bg-primary text-white rounded text-center">
+        <h2>Gudang Bahan Baku</h2>
+        <p class="mb-0">Dashboard Inventori</p>
+    </div>
+
+    <!-- Layout 2 Kolom -->
+    <div class="row">
+
+        <!-- KIRI (4 Kolom) -->
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    Form Stok Masuk
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Nama Barang</label>
+                            <input type="text" class="form-control" placeholder="Contoh: Benang obras">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Quantity</label>
+                            <input type="number" class="form-control" placeholder="Masukkan jumlah">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Supplier</label>
+                            <input type="text" class="form-control" placeholder="Nama supplier">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            Tambah Produk
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- KANAN (8 Kolom) -->
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    Tabel Stok Saat Ini
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead class="table-secondary">
+                            <tr>
+                                <th>Nama Barang</th>
+                                <th>Qty</th>
+                                <th>Supplier</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Benang</td>
+                                <td>120</td>
+                                <td>PT pintal nusantara</td>
+                                <td><span class="badge bg-success">Tersedia</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning">Edit</button>
+                                    <button class="btn btn-sm btn-danger">Hapus</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Kain Keras</td>
+                                <td>20</td>
+                                <td>CV Sukini</td>
+                                <td><span class="badge bg-warning">Menipis</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning">Edit</button>
+                                    <button class="btn btn-sm btn-danger">Hapus</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sifon</td>
+                                <td>5</td>
+                                <td>PT Pelangi Mencari Cinta</td>
+                                <td><span class="badge bg-danger">Hampir Habis</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning">Edit</button>
+                                    <button class="btn btn-sm btn-danger">Hapus</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
