@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Laporan Insiden</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #f4f6f9; }
+        .card { border-left: 5px solid #dc3545; transition: 0.2s; }
+        .card:hover { transform: translateY(-3px); }
+    </style>
+</head>
+<body class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-danger">Laporan Insiden</h1>
+        <div id="loading" class="spinner-border text-danger" style="display:none"></div>
+    </div>
+
+    <div id="container" class="row">
+        <div class="col-12 text-center">
+            <button id="btnLoad" class="btn btn-danger btn-lg">Muat 10 Insiden Terbaru</button>
+        </div>
+    </div>
+
+    <footer class="mt-5 text-center text-muted small">Tim Maintenance - Tindak lanjut dalam 1x24 jam</footer>
+
+    <script>
+        // Data dummy singkat (10 insiden saja)
+        const dataInsiden = [
+            {id:1, userId:101, title:"Kebocoran Pipa Air Lantai 3", body:"Air menggenangi koridor lantai 2 dan 3. Perbaikan segera diperlukan."},
+            {id:2, userId:102, title:"Listrik Padam di Ruang Server", body:"Server mati total akibat korsleting. Tim IT sedang perbaiki."},
+            {id:3, userId:103, title:"Kerusakan Lift Barang", body:"Lift barang macet. Teknisi menunggu suku cadang dari pabrik."},
+            {id:4, userId:104, title:"Kebakaran Kecil di Dapur Kantin", body:"Kompor gas meledak. Api sudah dipadamkan, dapur rusak."},
+            {id:5, userId:105, title:"Genangan Air di Parkiran Bawah", body:"Pompa air mati, 5 kendaraan terendam. Air sedang dikuras."},
+            {id:6, userId:101, title:"AC Ruang Rapat Tidak Berfungsi", body:"AC mati total, ruangan panas 32°C. Rapat terpaksa dipindah."},
+            {id:7, userId:106, title:"Pintu Otomatis Rusak", body:"Pintu masuk timur tidak bisa terbuka. Teknisi datang besok."},
+            {id:8, userId:107, title:"Kebocoran Gas di Laboratorium", body:"Bau gas menyengat. Area dievakuasi, tim damkar turun."},
+            {id:9, userId:102, title:"Jaringan Internet Putus", body:"Internet gedung A dan B putus total. 200 karyawan terdampak."},
+            {id:10, userId:108, title:"Kerusakan Mesin Fotokopi", body:"Mesin error kode E-47. Perlu penggantian drum unit baru."},
+            {id:11, userId:103, title:"Pipa Bocor di Ruang Arsip", body:"Air menetes dari plafon. Dokumen penting basah terkena air."},
+            {id:12, userId:109, title:"Lampu Parkiran Mati", body:"5 tiang lampu parkiran mati. Kondisi gelap dan berbahaya."},
+            {id:13, userId:104, title:"CCTV Mati", body:"20% kamera tidak berfungsi. Rekaman seminggu terakhir hilang."},
+            {id:14, userId:105, title:"Toilet Pria Tersumbat", body:"Toilet lantai 2 mampet total. Air kotor meluap ke koridor."},
+            {id:15, userId:106, title:"Genset Darurat Rusak", body:"Genset tidak mau menyala. Baterai soak dan starter motor rusak."}
+        ];
+
+        const container = document.getElementById('container');
+        const loading = document.getElementById('loading');
+        const btnLoad = document.getElementById('btnLoad');
+
+        btnLoad.onclick = async () => {
+            loading.style.display = 'inline-block';
+            container.innerHTML = '<div class="col-12 text-center py-5"><div class="spinner-border text-danger"></div><p>Memuat data...</p></div>';
+            
+            await new Promise(r => setTimeout(r, 500)); // simulasi delay
+            
+            const terbaru = dataInsiden.slice(-10).sort((a,b) => b.id - a.id);
+            container.innerHTML = '';
+            
+            terbaru.forEach(i => {
+                const desc = i.body.length > 100 ? i.body.slice(0,100)+'...' : i.body;
+                container.innerHTML += `
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <span class="badge bg-danger mb-2">Insiden #${i.id}</span>
+                                <h5 class="text-danger">${escapeHtml(i.title)}</h5>
+                                <p class="small">${escapeHtml(desc)}</p>
+                                <button class="btn btn-warning w-100" onclick="alert('Tiket ID ${i.id} sedang diproses oleh Tim Maintenance.\\nJudul: ${escapeHtml(i.title)}')">Tindak Lanjut</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            loading.style.display = 'none';
+        };
+
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+    </script>
+</body>
+</html>
